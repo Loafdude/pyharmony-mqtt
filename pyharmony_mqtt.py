@@ -29,7 +29,7 @@ def run_in_loop_now(name, func):
     loop.run_until_complete(func_task)
     return func_task.result()
 
-def get_client(ip, port=None, activity_callback=None):
+def get_client(ip, port=8088, activity_callback=None):
     """Connect to the Harmony and return a Client instance.
 
     Args:
@@ -40,7 +40,7 @@ def get_client(ip, port=None, activity_callback=None):
     Returns:
         object: Authenticated client instance.
     """
-    func = harmony_client.create_and_connect_client(ip, port, activity_change)
+    func = harmony_client.create_and_connect_client(ip, port, activity_callback)
     return run_in_loop_now('get_client', func)
 
 def get_config(client):
